@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Home = (props) => {
   const classes = useStyles();
-  const { user, logout, fetchConversations, conversations } = props;
+  const { user, logout, fetchConversations } = props;
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -25,8 +25,8 @@ const Home = (props) => {
     }
   }, [user.id]);
 
-  useEffect(() => { 
-     fetchConversations();
+  useEffect(() => {
+    fetchConversations();
   }, [fetchConversations]);
 
   if (!user.id) {
@@ -38,7 +38,6 @@ const Home = (props) => {
   const handleLogout = async () => {
     await logout(user.id);
   };
-
   return (
     <>
       {/* logout button will eventually be in a dropdown next to username */}
