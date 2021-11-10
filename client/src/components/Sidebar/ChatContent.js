@@ -24,8 +24,8 @@ const ChatContent = (props) => {
   const classes = useStyles();
 
   const { conversation } = props;
-  const { latestMessageText, otherUser } = conversation;
-
+  const { otherUser } = conversation;
+  console.log(conversation,"sidebar")
   return (
     <Box className={classes.root}>
       <Box>
@@ -33,7 +33,7 @@ const ChatContent = (props) => {
           {otherUser.username}
         </Typography>
         <Typography className={classes.previewText}>
-          {latestMessageText}
+          {conversation.latestMessageText}
         </Typography>
       </Box>
     </Box>
