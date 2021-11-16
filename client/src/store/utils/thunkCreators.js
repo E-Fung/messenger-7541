@@ -70,8 +70,10 @@ export const logout = (id) => async (dispatch) => {
 // CONVERSATIONS THUNK CREATORS
 
 export const fetchConversations = () => async (dispatch) => {
+  console.log("fetching")
   try {
     const { data } = await axios.get("/api/conversations");
+    data.map((convo)=>{return convo.messages = convo.messages.reverse()} )
     dispatch(gotConversations(data));
   } catch (error) {
     console.error(error);
@@ -93,9 +95,10 @@ const sendMessage = (data, body) => {
 
 // message format to send: {recipientId, text, conversationId}
 // conversationId will be set to null if its a brand new conversation
-export const postMessage = (body) => (dispatch) => {
+export const postMessage = (body) => async (dispatch) => {
   try {
-    const data = saveMessage(body);
+    const data = await saveMessage(body);
+    sendMessage(data, body);
 
     if (!body.conversationId) {
       dispatch(addConversation(body.recipientId, data.message));
@@ -103,7 +106,6 @@ export const postMessage = (body) => (dispatch) => {
       dispatch(setNewMessage(data.message));
     }
 
-    sendMessage(data, body);
   } catch (error) {
     console.error(error);
   }
