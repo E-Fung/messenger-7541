@@ -70,7 +70,6 @@ export const logout = (id) => async (dispatch) => {
 // CONVERSATIONS THUNK CREATORS
 
 export const fetchConversations = () => async (dispatch) => {
-  console.log("fetching")
   try {
     const { data } = await axios.get("/api/conversations");
     data.map((convo)=>{return convo.messages = convo.messages.reverse()} )
