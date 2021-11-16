@@ -24,7 +24,6 @@ const SidebarContainer = (props) => {
     await searchUsers(event.target.value);
     setSearchTerm(event.target.value);
   };
-
   return <Sidebar handleChange={handleChange} searchTerm={searchTerm} />;
 };
 
