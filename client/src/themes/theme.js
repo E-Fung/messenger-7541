@@ -2,18 +2,22 @@ import { createMuiTheme } from "@material-ui/core";
 
 export const theme = createMuiTheme({
   typography: {
-    fontFamily: "Open Sans, sans-serif",
+    fontFamily: "Open Sans",
     fontSize: 14,
     button: {
       textTransform: "none",
       letterSpacing: 0,
-      fontWeight: "bold"
     }
   },
   overrides: {
     MuiInput: {
       input: {
         fontWeight: "bold"
+      }
+    },
+    MuiTypography:{
+      body1:{
+        fontWeight:'600'
       }
     }
   },
