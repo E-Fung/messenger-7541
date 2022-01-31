@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, Typography } from "@material-ui/core";
+import { Box, Typography, Button, Grow } from "@material-ui/core";
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import { setActiveChat } from "../../store/activeConversation";
+import { connect } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,14 +42,36 @@ const useStyles = makeStyles((theme) => ({
   },
   ellipsis: {
     color: "#95A7C4",
-    marginRight: 24,
     opacity: 0.5
+  },
+  dropDownContainer: {
+    position:"relative"
+  },
+  dropDown: {
+    color:"black", 
+    position:"absolute", 
+    boxShadow:"0px 0px 5px rgba(0,0, 0,0.2)",
+    borderRadius:"5px",
+    backgroundColor:"white"
+  },
+  button: {
+    marginRight: "24px"
   }
 }));
 
 const Header = (props) => {
+  const [toggleMenu, setToggleMenu] = useState(false)
+
   const classes = useStyles();
   const { username, online } = props;
+
+  const handleClick = () => {
+    setToggleMenu(!toggleMenu)
+  };
+
+  const handleLeaveChat = async () => {
+    await props.setActiveChat("");
+  };
 
   return (
     <Box className={classes.root}>
@@ -56,9 +80,30 @@ const Header = (props) => {
         <Box className={`${classes.statusDot} ${classes[online && "online"]}`}></Box>
         <Typography className={classes.statusText}>{online ? "Online" : "Offline"}</Typography>
       </Box>
-      <MoreHorizIcon classes={{ root: classes.ellipsis }} />
+      <Box className={classes.dropDownContainer}>
+        <Button onClick={handleClick} className={classes.button}>
+          <MoreHorizIcon classes={{ root: classes.ellipsis }} />
+        </Button>
+        {toggleMenu && (
+          <Grow in={true}>
+            <Box className={classes.dropDown}>
+              <Button onClick={handleLeaveChat}>
+                Exit
+              </Button>
+            </Box>
+          </Grow>
+        )}
+      </Box>
     </Box>
   );
 };
 
-export default Header;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setActiveChat: (id) => {
+      dispatch(setActiveChat(id));
+    }
+  };
+};
+
+export default connect(null, mapDispatchToProps)(Header);
