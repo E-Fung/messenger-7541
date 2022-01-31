@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, Typography, Button, Grow } from "@material-ui/core";
-import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
+import { Box, Typography, Button } from "@material-ui/core";
 import { setActiveChat } from "../../store/activeConversation";
 import { connect } from "react-redux";
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,14 +60,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Header = (props) => {
-  const [toggleMenu, setToggleMenu] = useState(false)
 
   const classes = useStyles();
   const { username, online } = props;
-
-  const handleClick = () => {
-    setToggleMenu(!toggleMenu)
-  };
 
   const handleLeaveChat = async () => {
     await props.setActiveChat("");
@@ -81,18 +76,9 @@ const Header = (props) => {
         <Typography className={classes.statusText}>{online ? "Online" : "Offline"}</Typography>
       </Box>
       <Box className={classes.dropDownContainer}>
-        <Button onClick={handleClick} className={classes.button}>
-          <MoreHorizIcon classes={{ root: classes.ellipsis }} />
+        <Button onClick={handleLeaveChat} className={classes.button}>
+          <CloseIcon classes={{ root: classes.ellipsis }} />
         </Button>
-        {toggleMenu && (
-          <Grow in={true}>
-            <Box className={classes.dropDown}>
-              <Button onClick={handleLeaveChat}>
-                Exit
-              </Button>
-            </Box>
-          </Grow>
-        )}
       </Box>
     </Box>
   );

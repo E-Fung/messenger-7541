@@ -4,11 +4,11 @@ import { Box } from "@material-ui/core";
 import { Input, Header, Messages } from "./index";
 import { connect } from "react-redux";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
-    flexGrow: 8,
-    flexDirection: "column"
+    flexDirection: "column",
+    width: "75%"
   },
   chatContainer: {
     marginLeft: 41,
@@ -17,7 +17,17 @@ const useStyles = makeStyles(() => ({
     flexDirection: "column",
     flexGrow: 1,
     justifyContent: "space-between"
-  }
+  },
+  [theme.breakpoints.down("md")]: {
+    root: {
+      width: "70%"
+    }
+  },
+  [theme.breakpoints.down("sm")]: {
+    root: {
+      width: "100%"
+    }
+  },
 }));
 
 const ActiveChat = (props) => {
