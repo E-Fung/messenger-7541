@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "space-between",
     marginLeft: 20,
-    flexGrow: 1,
-    overflow: "hidden"
+    overflow: "clip",
+    flexDirection: "column"
   },
   username: {
     fontWeight: "bold",
@@ -18,6 +18,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 12,
     color: "#9CADC8",
     letterSpacing: -0.17,
+    whiteSpace: "nowrap",
+    textOverflow:"ellipsis",
+    overflow:"hidden"
   },
 }));
 
@@ -29,14 +32,12 @@ const ChatContent = (props) => {
 
   return (
     <Box className={classes.root}>
-      <Box>
-        <Typography className={classes.username}>
-          {otherUser.username}
-        </Typography>
-        <Typography className={classes.previewText}>
-          {latestMessageText}
-        </Typography>
-      </Box>
+      <Typography className={classes.username}>
+        {otherUser.username}
+      </Typography>
+      <Typography className={classes.previewText}>
+        {latestMessageText}
+      </Typography>
     </Box>
   );
 };
