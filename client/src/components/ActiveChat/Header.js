@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Box, Typography, Button } from "@material-ui/core";
 import { setActiveChat } from "../../store/activeConversation";
 import { connect } from "react-redux";
-import CloseIcon from '@material-ui/icons/Close';
+import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles((theme) => ({
   root: {

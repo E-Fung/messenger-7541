@@ -8,6 +8,9 @@ const useStyles = makeStyles(() => ({
     overflow: "clip",
     maxWidth: "70%"
   },
+  container: {
+    overflow:"clip"
+  },
   avatar: {
     height: 30,
     width: 30,
@@ -40,7 +43,7 @@ const OtherUserBubble = (props) => {
   return (
     <Box className={classes.root}>
       <Avatar alt={otherUser.username} src={otherUser.photoUrl} className={classes.avatar}></Avatar>
-      <Box style={{overflow:"clip"}}>
+      <Box className={classes.container}>
         <Typography className={classes.usernameDate}>
           {otherUser.username} {time}
         </Typography>
