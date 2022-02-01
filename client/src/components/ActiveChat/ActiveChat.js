@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     flexGrow: 1,
-    justifyContent: "space-between"
+    height: "0px",
+    overflowY: "auto"
   },
   [theme.breakpoints.down("md")]: {
     root: {
@@ -28,6 +29,17 @@ const useStyles = makeStyles((theme) => ({
       width: "100%"
     }
   },
+  '@global': {
+    '*::-webkit-scrollbar': {
+      width: '0.4em'
+    },
+    '*::-webkit-scrollbar-track': {
+      '-webkit-box-shadow': 'inset 0 0 6px rgba(0,0,0,0.00)'
+    },
+    '*::-webkit-scrollbar-thumb': {
+      backgroundColor: 'rgba(0,0,0,.1)',
+    }
+  }
 }));
 
 const ActiveChat = (props) => {
@@ -49,12 +61,12 @@ const ActiveChat = (props) => {
               otherUser={conversation.otherUser}
               userId={user.id}
             />
-            <Input
-              otherUser={conversation.otherUser}
-              conversationId={conversation.id}
-              user={user}
-            />
           </Box>
+          <Input
+            otherUser={conversation.otherUser}
+            conversationId={conversation.id}
+            user={user}
+          />
         </>
       )}
     </Box>

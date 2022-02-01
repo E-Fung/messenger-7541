@@ -4,7 +4,9 @@ import { Box, Typography, Avatar } from "@material-ui/core";
 
 const useStyles = makeStyles(() => ({
   root: {
-    display: "flex"
+    display: "flex",
+    overflow: "clip",
+    maxWidth: "70%"
   },
   avatar: {
     height: 30,
@@ -20,7 +22,8 @@ const useStyles = makeStyles(() => ({
   },
   bubble: {
     backgroundImage: "linear-gradient(225deg, #6CC1FF 0%, #3A8DFF 100%)",
-    borderRadius: "0 10px 10px 10px"
+    borderRadius: "0 10px 10px 10px",
+    overflowWrap: "break-word",
   },
   text: {
     fontSize: 14,
@@ -37,7 +40,7 @@ const OtherUserBubble = (props) => {
   return (
     <Box className={classes.root}>
       <Avatar alt={otherUser.username} src={otherUser.photoUrl} className={classes.avatar}></Avatar>
-      <Box>
+      <Box style={{overflow:"clip"}}>
         <Typography className={classes.usernameDate}>
           {otherUser.username} {time}
         </Typography>
