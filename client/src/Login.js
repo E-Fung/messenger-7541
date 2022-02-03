@@ -8,11 +8,55 @@ import {
   Button,
   FormControl,
   TextField,
+  Hidden
 } from "@material-ui/core";
 import { login } from "./store/utils/thunkCreators";
+import { makeStyles } from '@material-ui/core/styles';
+import bg_img from './assets/bg_img.png';
+import chat from './assets/chat.png';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexWrap: 'nowrap',
+  },
+  leftMedia: {
+    position: 'relative',
+    height: '100vh',
+  },
+  leftMedia__img: {
+    position: 'relative',
+    zIndex: 10,
+  },
+  leftMedia__bg: {
+    backgroundColor: 'rgba(134,185,255)',
+    top: '0',
+    position: 'absolute',
+    height: '100vh',
+    width: '100%',
+  },
+  leftMedia__gradient: {
+    height: '100%',
+    background: 'linear-gradient(#3A8DFF,#86B9FF)',
+    position: 'absolute',
+    opacity: '85%',
+    top: '0',
+    zIndex: 100,
+  },
+  leftMedia__gradient__textCon:{
+    marginTop: "2.5rem",
+    marginBottom:"8.5rem"
+  },
+  leftMedia__gradient__textCon__text: {
+    color: "white",
+    fontSize: "1.857142857rem",
+    lineHeight: "2.858rem",
+    letterSpacing: "-0.00075rem"
+  }
+}));
 
 const Login = (props) => {
   const history = useHistory();
+  const classes = useStyles();
   const { user, login } = props;
 
   const handleLogin = async (event) => {
@@ -28,7 +72,26 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container justify="center">
+    <Grid container>
+      <Box className={classes.leftMedia}>
+        <Hidden smDown>
+          <img src={bg_img} alt="" className={classes.leftMedia__img} />
+          <Grid item className={classes.leftMedia__bg} />
+          <Grid item container alignContent="center" className={classes.leftMedia__gradient}>
+                <Grid container justifyContent='center'>
+                  <img src={chat} alt="" />
+                </Grid>
+                <Grid container justifyContent='center' className={classes.leftMedia__gradient__textCon}>
+                  <Typography className={classes.leftMedia__gradient__textCon__text}>
+                    Converse with anyone
+                  </Typography>
+                  <Typography className={classes.leftMedia__gradient__textCon__text}>
+                    with any language
+                  </Typography>
+                </Grid>
+          </Grid>
+        </Hidden>
+      </Box>
       <Box>
         <Grid container item>
           <Typography>Need to register?</Typography>
