@@ -3,7 +3,6 @@ import { Redirect, useHistory } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   Grid,
-  Box,
   Typography,
   Button,
   FormControl,
@@ -18,6 +17,7 @@ import chat from "./assets/chat.png";
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
+    flexWrap : "nowrap"
   },
   leftMedia: {
     position: "relative",
@@ -60,12 +60,12 @@ const useStyles = makeStyles((theme) => ({
   form: {
     height: "100vh",
     alignContent: "center",
-    direction: "column",
+    flexDirection: "column",
     flexGrow: "1"
   },
   form__topbar: {
     padding: '2rem 3rem',
-    justifyContent:"flex-end"
+    justifyContent:"flex-end",
   }, 
   form__topbar__question: {
     alignSelf: 'center',
@@ -81,6 +81,42 @@ const useStyles = makeStyles((theme) => ({
     fontSize:"1rem",
     fontWeight: "600",
     lineHeight: "normal",
+  },
+  form__form: {
+    flexGrow: 3,
+    alignContent: "center",
+    justifyContent: "center"
+  },
+  form__form__welcome: {
+    fontSize: "26px",
+    fontWeight: "600",
+    marginBottom: "2rem"
+  },
+  form__form__textfields: {
+    width: "27rem",
+    marginBottom: "2rem"
+  },
+  form__form__textfields__label: {
+    top: "-1rem"
+  },
+  form__form__butCon__login: {
+    backgroundColor: "#3A8DFF",
+    color: "white",
+    fontSize:"1rem",
+    fontWeight: "600",
+    lineHeight: "normal",
+    padding: "1.3rem 4.4rem",
+    marginTop: "1rem",
+    marginBottom: "7rem"
+  },
+  form__form__butCon:{
+    justifyContent: "center"
+  },
+  form__form__textfields__forgot: {
+    color:"#3A8DFF", 
+    fontSize:"0.86rem",
+    fontWeight:"600", 
+    cursor:"pointer"
   }
 }));
 
@@ -102,7 +138,7 @@ const Login = (props) => {
   }
 
   return (
-    <Grid container={classes.root}>
+    <Grid container className={classes.root}>
       <Grid item className={classes.leftMedia}>
         <Hidden smDown>
           <img src={bg_img} alt="" className={classes.leftMedia__img} />
@@ -122,40 +158,51 @@ const Login = (props) => {
           </Grid>
         </Hidden>
       </Grid>
-      <Grid item className={classes.form}>
+      <Grid item container className={classes.form}>
         <Grid container item  className={classes.form__topbar}>
           <Typography className={classes.form__topbar__question}>Don't have an account?</Typography>
-          <Button color="primary" onClick={() => history.push("/register")} classes={{textPrimary: classes.form__topbar__button, label:classes.form__topbar__button__label}}>
+          <Button 
+            color="primary" 
+            onClick={() => history.push("/register")} 
+            classes={{textPrimary: classes.form__topbar__button, label:classes.form__topbar__button__label}}>
             Create Account
           </Button>
         </Grid>
-        {/* <form onSubmit={handleLogin}>
-          <Grid>
+        <Grid container item className={classes.form__form}>
+          <form onSubmit={handleLogin}>
+            <Typography className={classes.form__form__welcome}>Welcome back!</Typography>
             <Grid>
               <FormControl margin="normal" required>
-                <TextField
-                  aria-label="username"
-                  label="Username"
-                  name="username"
-                  type="text"
+                <TextField 
+                  aria-label="username" 
+                  label="Username" 
+                  name="username" 
+                  type="text" 
+                  InputLabelProps={{className:classes.form__form__textfields__label}} 
+                  className={classes.form__form__textfields} 
                 />
               </FormControl>
             </Grid>
-            <FormControl margin="normal" required>
-              <TextField
-                label="password"
-                aria-label="password"
-                type="password"
-                name="password"
-              />
-            </FormControl>
             <Grid>
-              <Button type="submit" variant="contained" size="large">
+              <FormControl margin="normal" required>
+                <TextField 
+                  label="Password" 
+                  aria-label="password" 
+                  type="password" 
+                  name="password" 
+                  InputLabelProps={{className:classes.form__form__textfields__label}} 
+                  InputProps={{endAdornment:<Typography className={classes.form__form__textfields__forgot}>Forgot?</Typography>}} 
+                  className={classes.form__form__textfields} 
+                />
+              </FormControl>
+            </Grid>
+            <Grid container className={classes.form__form__butCon}>
+              <Button type="submit" className={classes.form__form__butCon__login}>
                 Login
               </Button>
             </Grid>
-          </Grid>
-        </form> */}
+          </form>
+        </Grid>
       </Grid>
     </Grid>
   );
