@@ -83,16 +83,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "1rem",
     borderRadius: "3px",
   },
-  formBox__form__butBox__buttonSignup: {
-    backgroundColor: `${theme.palette.primary.main}`,
-    color: "white",
-    fontSize: "1rem",
-    fontWeight: "600",
-    lineHeight: "normal",
-    padding: "1.3rem 4.4rem",
-    marginTop: "1rem",
-    borderRadius: "3px",
-  },
   [theme.breakpoints.down("md")]: {
     formBox__topbar__question: {
       padding: "0rem 2rem",
@@ -150,7 +140,7 @@ const LoginSignUp = (props) => {
                 {onLogin ? "Welcome back!" : "Create an account."}
               </Typography>
               <StyledTextField label="Username" aria_label="username" type="text" name="username" />
-                {!onLogin && <StyledTextField label="E-mail address" aria_label="e-mail address" type="email" name="email" />}
+              {!onLogin && <StyledTextField label="E-mail address" aria_label="e-mail address" type="email" name="email" />}
               <StyledTextField
                 label="Password"
                 aria_label="password"
@@ -161,7 +151,7 @@ const LoginSignUp = (props) => {
                 }
               />
               <Grid container className={classes.formBox__form__butBox}>
-                <Button type="submit" className={onLogin ? classes.formBox__form__butBox__button : classes.formBox__form__butBox__buttonSignup}>
+                <Button type="submit" className={classes.formBox__form__butBox__button}>
                   {onLogin ? "Login" : "Create"}
                 </Button>
               </Grid>
