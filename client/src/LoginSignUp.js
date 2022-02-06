@@ -24,24 +24,20 @@ const useStyles = makeStyles((theme) => ({
   },
   formBox__topbar__question: {
     alignSelf: "center",
-    color: "grey",
-    lineHeight: "normal",
+    color: "#B0B0B0",
     padding: "1.25rem 2.4rem",
   },
   formBox__topbar__button: {
     boxShadow: "0px 2px 12px 0px rgba(74, 106, 149, 0.2)",
     padding: "1.25rem 2.4rem",
     borderRadius: "5px",
+    fontWeight: "600"
   },
   formBox__topbar__buttonSignup: {
     boxShadow: "0px 2px 12px 0px rgba(74, 106, 149, 0.2)",
     padding: "1.25rem 3.7rem",
     borderRadius: "5px",
-  },
-  formBox__topbar__label: {
-    fontSize: "1rem",
-    fontWeight: "600",
-    lineHeight: "normal",
+    fontWeight: "600"
   },
   formBox__form: {
     flexGrow: 3,
@@ -55,19 +51,15 @@ const useStyles = makeStyles((theme) => ({
     transform: "translate(0,-1.5rem)",
   },
   formBox__form__title: {
-    fontSize: "1.86rem",
-    fontWeight: "600",
     marginBottom: "2rem",
+    fontWeight: "600"
   },
   formBox__form__titleSignup: {
-    fontSize: "1.86rem",
-    fontWeight: "600",
     marginBottom: "1rem",
+    fontWeight: "600"
   },
   formBox__form__forgot: {
     color: `${theme.palette.primary.main}`,
-    fontSize: "0.86rem",
-    fontWeight: "600",
     cursor: "pointer",
   },
   formBox__form__butBox: {
@@ -76,12 +68,10 @@ const useStyles = makeStyles((theme) => ({
   formBox__form__butBox__button: {
     backgroundColor: `${theme.palette.primary.main}`,
     color: "white",
-    fontSize: "1rem",
-    fontWeight: "600",
-    lineHeight: "normal",
     padding: "1.3rem 4.4rem",
     marginTop: "1rem",
     borderRadius: "3px",
+    fontFamily: "Montserrat",
   },
   [theme.breakpoints.down("md")]: {
     formBox__topbar__question: {
@@ -136,18 +126,18 @@ const LoginSignUp = (props) => {
         <Grid container item className={classes.formBox__form}>
           <Grid className={onLogin ? classes.formBox__formShift : classes.formBox__formShiftSingup}>
             <form onSubmit={onLogin ? handleLogin : handleRegister}>
-              <Typography className={onLogin ? classes.formBox__form__title : classes.formBox__form__titleSignup}>
+              <Typography variant="h2" className={onLogin ? classes.formBox__form__title : classes.formBox__form__titleSignup}>
                 {onLogin ? "Welcome back!" : "Create an account."}
               </Typography>
               <StyledTextField label="Username" aria_label="username" type="text" name="username" />
-              {!onLogin && <StyledTextField label="E-mail address" aria_label="e-mail address" type="email" name="email" />}
+                {!onLogin && <StyledTextField label="E-mail address" aria_label="e-mail address" type="email" name="email" />}
               <StyledTextField
                 label="Password"
                 aria_label="password"
                 type="password"
                 name="password"
                 InputProps={
-                  onLogin ? { endAdornment: <Typography className={classes.formBox__form__forgot}>Forgot?</Typography> } : { minLength: 6 }
+                  onLogin ? { endAdornment: <Typography variant="body2" className={classes.formBox__form__forgot}>Forgot?</Typography> } : { minLength: 6 }
                 }
               />
               <Grid container className={classes.formBox__form__butBox}>

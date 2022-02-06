@@ -44,8 +44,9 @@ const useStyles = makeStyles((theme) => ({
   },
   mediaBox__gradient__textBox__text: {
     color: "white",
-    fontSize: "1.86rem",
-    lineHeight: "2.86rem",
+    textAlign: "center",
+    padding: "0 4rem",
+    fontWeight: "400"
   },
 }));
 
@@ -62,10 +63,8 @@ const LeftMedia = (props)=>{
             <img src={chat} alt="" />
           </Grid>
           <Grid container className={classes.mediaBox__gradient__textBox}>
-            <Typography className={classes.mediaBox__gradient__textBox__text}>
+            <Typography variant="h2" className={classes.mediaBox__gradient__textBox__text}>
               Converse with anyone
-            </Typography>
-            <Typography className={classes.mediaBox__gradient__textBox__text}>
               with any language
             </Typography>
           </Grid>
