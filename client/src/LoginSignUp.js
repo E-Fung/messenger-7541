@@ -9,33 +9,33 @@ import { LeftMedia, StyledTextField } from "./components";
 const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
-    flexWrap: "nowrap",
+    flexWrap: "nowrap"
   },
   formBox: {
     height: "100vh",
     alignContent: "center",
     flexDirection: "column",
     flexGrow: "1",
-    flexWrap: "nowrap",
+    flexWrap: "nowrap"
   },
   formBox__topbar: {
-    padding: "2rem 3rem",
-    justifyContent: "flex-end",
+    padding: `${theme.spacing(2)} ${theme.spacing(3)}`,
+    justifyContent: "flex-end"
   },
   formBox__topbar__question: {
     alignSelf: "center",
-    color: "#B0B0B0",
-    padding: "1.25rem 2.4rem",
+    color: theme.palette.primary.grey,
+    padding: `${theme.spacing(1.25)} ${theme.spacing(2.4)}`
   },
   formBox__topbar__button: {
-    boxShadow: "0px 2px 12px 0px rgba(74, 106, 149, 0.2)",
-    padding: "1.25rem 2.4rem",
+    boxShadow: `0px 2px 12px 0px rgba(74, 106, 149, 0.2)`,
+    padding: `${theme.spacing(1.25)} ${theme.spacing(2.4)}`,
     borderRadius: "5px",
     fontWeight: "600"
   },
   formBox__topbar__buttonSignup: {
-    boxShadow: "0px 2px 12px 0px rgba(74, 106, 149, 0.2)",
-    padding: "1.25rem 3.7rem",
+    boxShadow: `0px 2px 12px 0px rgba(74, 106, 149, 0.2)`,
+    padding: `${theme.spacing(1.25)} ${theme.spacing(3.7)}`,
     borderRadius: "5px",
     fontWeight: "600"
   },
@@ -45,40 +45,53 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   formBox__formShift: {
-    transform: "translate(0,-3rem)",
-  },
-  formBox__formShiftSingup: {
-    transform: "translate(0,-1.5rem)",
+    transform: (props) => 
+      props.type === "login"
+      ? `translate(0,-4.5rem)`
+      : `translate(0,-1.5rem)`, 
   },
   formBox__form__title: {
-    marginBottom: "2rem",
-    fontWeight: "600"
-  },
-  formBox__form__titleSignup: {
-    marginBottom: "1rem",
+    marginBottom: (props) =>
+      props.type === "login"
+      ? theme.spacing(2)
+      : theme.spacing(1),
     fontWeight: "600"
   },
   formBox__form__forgot: {
-    color: `${theme.palette.primary.main}`,
+    color: theme.palette.primary.main,
     cursor: "pointer",
   },
   formBox__form__butBox: {
     justifyContent: "center",
   },
   formBox__form__butBox__button: {
-    backgroundColor: `${theme.palette.primary.main}`,
-    color: "white",
-    padding: "1.3rem 4.4rem",
-    marginTop: "1rem",
+    backgroundColor: theme.palette.primary.main,
+    color: theme.palette.primary.white,
+    width: `${(160/14)}rem`,
+    height: `${(56/14)}rem`,
+    marginTop: theme.spacing(1),
     borderRadius: "3px",
     fontFamily: "Montserrat",
+    fontSize: `${(16/14)}rem`,
   },
   [theme.breakpoints.down("md")]: {
     formBox__topbar__question: {
-      padding: "0rem 2rem",
+      padding: `${theme.spacing(0)} ${theme.spacing(2)}`
     },
   },
 }));
+
+const FormShiftGrid = (props) => {
+  const {type, ...other} = props;
+  const classes = useStyles(props)
+  return <Grid className={classes.formBox__formShift} {...other} />
+}
+
+const FormTitleTypo = (props) => {
+  const {type, ...other} = props;
+  const classes = useStyles(props)
+  return <Typography variant="h2" className={classes.formBox__form__title} {...other} />
+}
 
 const LoginSignUp = (props) => {
   const history = useHistory();
@@ -124,11 +137,11 @@ const LoginSignUp = (props) => {
           </Button>
         </Grid>
         <Grid container item className={classes.formBox__form}>
-          <Grid className={onLogin ? classes.formBox__formShift : classes.formBox__formShiftSingup}>
+          <FormShiftGrid type={onLogin ? "login" : "signup"}>
             <form onSubmit={onLogin ? handleLogin : handleRegister}>
-              <Typography variant="h2" className={onLogin ? classes.formBox__form__title : classes.formBox__form__titleSignup}>
+              <FormTitleTypo type={onLogin ? "login" : "signup"}>
                 {onLogin ? "Welcome back!" : "Create an account."}
-              </Typography>
+              </FormTitleTypo>
               <StyledTextField label="Username" aria_label="username" type="text" name="username" />
                 {!onLogin && <StyledTextField label="E-mail address" aria_label="e-mail address" type="email" name="email" />}
               <StyledTextField
@@ -146,7 +159,7 @@ const LoginSignUp = (props) => {
                 </Button>
               </Grid>
             </form>
-          </Grid>
+          </FormShiftGrid>
         </Grid>
       </Grid>
     </Grid>

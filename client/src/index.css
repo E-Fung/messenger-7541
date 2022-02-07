@@ -6,22 +6,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-  font-size: 18px;
-}
-
-@media screen and (max-width: 1280px){
-  html {
-    font-size: 14px;
-  }
-}
-
-@media screen and (max-width: 600px){
-  html {
-    font-size: 10px;
-  }
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }

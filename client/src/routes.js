@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Route, Switch, withRouter, Redirect } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUser } from "./store/utils/thunkCreators";
 import LoginSignUp from "./LoginSignUp.js";
@@ -44,7 +44,7 @@ const Routes = (props) => {
         <Route
           exact
           path="/"
-          render={(props) => (props.user?.id ? <Home /> : <Redirect to="/login" />)}
+          render={(props) => (props.user?.id ? <Home /> : <LoginSignUp/>)}
         />
         <Route path="/home" component={Home} />
       </Switch>

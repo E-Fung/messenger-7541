@@ -38,14 +38,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   mediaBox__gradient__textBox:{
-    marginTop: "2.5rem",
-    marginBottom:"8.5rem",
+    marginTop: theme.spacing(2.5), 
+    marginBottom: theme.spacing(8.5),
     justifyContent: "center"
   },
   mediaBox__gradient__textBox__text: {
-    color: "white",
+    color: theme.palette.primary.white,
     textAlign: "center",
-    padding: "0 4rem",
     fontWeight: "400"
   },
 }));
@@ -65,6 +64,8 @@ const LeftMedia = (props)=>{
           <Grid container className={classes.mediaBox__gradient__textBox}>
             <Typography variant="h2" className={classes.mediaBox__gradient__textBox__text}>
               Converse with anyone
+            </Typography>
+            <Typography variant="h2" className={classes.mediaBox__gradient__textBox__text}>
               with any language
             </Typography>
           </Grid>
