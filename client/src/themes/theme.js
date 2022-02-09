@@ -40,7 +40,7 @@ export const theme = createMuiTheme({
         },
         "@media (min-width: 370px)": {
           html: {
-            fontSize: 8
+            fontSize: 10
           }
         },
         "@media (min-width: 600px)": {

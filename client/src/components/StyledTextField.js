@@ -20,6 +20,11 @@ const useStyles = makeStyles((theme) => ({
     top: theme.spacing(-1.5),
     marginLeft: theme.spacing(0.2)
   },
+  [theme.breakpoints.down("md")]: {
+    textfields: {
+      width: theme.spacing(35)
+    }
+  },
 }));
 
 const StyledTextField = (props)=>{

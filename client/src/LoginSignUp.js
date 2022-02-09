@@ -29,13 +29,10 @@ const useStyles = makeStyles((theme) => ({
   },
   formBox__topbar__button: {
     boxShadow: `0px 2px 12px 0px rgba(74, 106, 149, 0.2)`,
-    padding: `${theme.spacing(1.25)} ${theme.spacing(2.4)}`,
-    borderRadius: "5px",
-    fontWeight: "600"
-  },
-  formBox__topbar__buttonSignup: {
-    boxShadow: `0px 2px 12px 0px rgba(74, 106, 149, 0.2)`,
-    padding: `${theme.spacing(1.25)} ${theme.spacing(3.7)}`,
+    padding: (props) =>
+    props.type === "login"
+    ? `${theme.spacing(1.25)} ${theme.spacing(2.4)}`
+    : `${theme.spacing(1.25)} ${theme.spacing(3.7)}`,
     borderRadius: "5px",
     fontWeight: "600"
   },
@@ -71,13 +68,14 @@ const useStyles = makeStyles((theme) => ({
     height: `${(56/14)}rem`,
     marginTop: theme.spacing(1),
     borderRadius: "3px",
-    fontFamily: "Montserrat",
-    fontSize: `${(16/14)}rem`,
+    fontSize: `${(16/14)}rem`
   },
   [theme.breakpoints.down("md")]: {
     formBox__topbar__question: {
       padding: `${theme.spacing(0)} ${theme.spacing(2)}`
     },
+    formBox__form: {
+    }
   },
 }));
 
@@ -87,10 +85,16 @@ const FormShiftGrid = (props) => {
   return <Grid className={classes.formBox__formShift} {...other} />
 }
 
-const FormTitleTypo = (props) => {
+const FormTitleTypography = (props) => {
   const {type, ...other} = props;
   const classes = useStyles(props)
   return <Typography variant="h2" className={classes.formBox__form__title} {...other} />
+}
+
+const TopbarButton = (props) => {
+  const {type, ...other} = props;
+  const classes = useStyles(props)
+  return <Button color="primary" className={classes.formBox__topbar__button} {...other}/>
 }
 
 const LoginSignUp = (props) => {
@@ -125,23 +129,19 @@ const LoginSignUp = (props) => {
       <Grid container item className={classes.formBox}>
         <Grid container item className={classes.formBox__topbar}>
           <Typography className={classes.formBox__topbar__question}>{onLogin ? "Don't have an account?" : "Already have an account?"}</Typography>
-          <Button
-            color="primary"
+          <TopbarButton
             onClick={() => (onLogin ? history.push("/register") : history.push("/login"))}
-            classes={{
-              textPrimary: onLogin ? classes.formBox__topbar__button : classes.formBox__topbar__buttonSignup,
-              label: classes.formBox__topbar__label,
-            }}
+            type={onLogin ? "login" : "signup"}
           >
             {onLogin ? "Create Account" : "Login"}
-          </Button>
+          </TopbarButton>
         </Grid>
         <Grid container item className={classes.formBox__form}>
           <FormShiftGrid type={onLogin ? "login" : "signup"}>
             <form onSubmit={onLogin ? handleLogin : handleRegister}>
-              <FormTitleTypo type={onLogin ? "login" : "signup"}>
+              <FormTitleTypography type={onLogin ? "login" : "signup"}>
                 {onLogin ? "Welcome back!" : "Create an account."}
-              </FormTitleTypo>
+              </FormTitleTypography>
               <StyledTextField label="Username" aria_label="username" type="text" name="username" />
                 {!onLogin && <StyledTextField label="E-mail address" aria_label="e-mail address" type="email" name="email" />}
               <StyledTextField
