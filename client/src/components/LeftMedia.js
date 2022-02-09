@@ -5,8 +5,7 @@ import {
   Hidden
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import bg_img from "../assets/bg_img.png";
-import chat from "../assets/chat.png";
+import { bg_img, chat } from "../assets";
 
 const useStyles = makeStyles((theme) => ({
   mediaBox: {
