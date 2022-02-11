@@ -74,8 +74,6 @@ const useStyles = makeStyles((theme) => ({
     formBox__topbar__question: {
       padding: `${theme.spacing(0)} ${theme.spacing(2)}`
     },
-    formBox__form: {
-    }
   },
 }));
 
