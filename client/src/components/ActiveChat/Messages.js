@@ -10,6 +10,7 @@ const Messages = (props) => {
     <Box>
       {messages.map((message) => {
         const time = moment(message.createdAt).format("h:mm");
+        
         return message.senderId === userId ? (
           <SenderBubble key={message.id} text={message.text} attachments={message.attachments} time={time} />
         ) : (

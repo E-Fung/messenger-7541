@@ -76,7 +76,7 @@ const Input = (props) => {
             <>
               <label htmlFor="image_upload">
                 <Button component="span"> 
-                  <img src={ic_file} style={{color:"black"}} alt="" />
+                  <img src={ic_file} alt="" />
                 </Button>
               </label>
               <input 
